@@ -71,6 +71,11 @@ public class PlayerController : MonoBehaviour
     {
         // สลับการหันหน้าของ Player ขึ้นหรือลง
         isFacingUp = !isFacingUp;
+
+        if (flashlight != null)
+        {
+            flashlight.transform.rotation = Quaternion.Euler(0, 0, isFacingUp ? 0 : 180);
+        }
     }
 
     private void UpdateFlashlightPosition()
