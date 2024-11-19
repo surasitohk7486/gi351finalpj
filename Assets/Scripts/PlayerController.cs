@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int wood = 5, stone = 5, hpPt = 0, sword,armor;
     public float moveSpeed = 5f; // ความเร็วในการเคลื่อนที่
     private Rigidbody2D rb;
     private Vector2 movement;
+    private bool uiCraftActive = false;
 
     public GameObject flashlight; // อ้างอิงถึงไฟฉาย
     public float flashlightDistance = 1f; // ระยะห่างของไฟฉายจาก Player
     private bool isFlashlightOn = false; // ตรวจสอบสถานะเปิด/ปิดของไฟฉาย
     private bool isFacingUp = true; // ตรวจสอบว่าผู้เล่นหันไปทางบนหรือล่าง
 
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private UI_Inventory uiinventory;
+    [SerializeField] private GameObject uiCrafting;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        inventory = new Inventory();
+        uiinventory.SetInventory(inventory);
+
+        ToggleCraftingUI(false);
 
         // ตั้งค่าให้ไฟฉายปิดในตอนเริ่มเกม
         if (flashlight != null)
@@ -35,6 +45,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // 0 คือคลิกซ้าย
         {
             ToggleFlashlight();
+        }
+
+        // กด E เพื่อเปิด/ปิด UI คราฟต์
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ToggleCraftingUI(!uiCraftActive);
         }
 
         // ตรวจสอบว่าผู้เล่นหันขึ้นหรือลง
@@ -65,6 +81,12 @@ public class PlayerController : MonoBehaviour
         {
             flashlight.SetActive(isFlashlightOn);
         }
+    }
+
+    private void ToggleCraftingUI(bool isActive)
+    {
+        uiCrafting.SetActive(isActive);
+        uiCraftActive = isActive;
     }
 
     private void FlipDirection()
