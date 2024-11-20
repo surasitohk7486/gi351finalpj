@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private bool uiCraftActive = false;
+    
+    
 
     public GameObject flashlight; // อ้างอิงถึงไฟฉาย
     public float flashlightDistance = 1f; // ระยะห่างของไฟฉายจาก Player
@@ -16,14 +18,15 @@ public class PlayerController : MonoBehaviour
     private bool isFacingUp = true; // ตรวจสอบว่าผู้เล่นหันไปทางบนหรือล่าง
 
     [SerializeField] private Inventory inventory;
-    [SerializeField] private UI_Inventory uiinventory;
+    private Collider2D currentTarget;
+
     [SerializeField] private GameObject uiCrafting;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         inventory = new Inventory();
-        uiinventory.SetInventory(inventory);
+        
 
         ToggleCraftingUI(false);
 
@@ -47,8 +50,13 @@ public class PlayerController : MonoBehaviour
             ToggleFlashlight();
         }
 
+        if (Input.GetKeyDown(KeyCode.E) && currentTarget != null)
+        {
+            CollectItem(currentTarget.GetComponent<Item>());
+        }
+
         // กด E เพื่อเปิด/ปิด UI คราฟต์
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             ToggleCraftingUI(!uiCraftActive);
         }
@@ -108,6 +116,31 @@ public class PlayerController : MonoBehaviour
             Vector3 flashlightPosition = transform.position;
             flashlightPosition.y += isFacingUp ? flashlightDistance : -flashlightDistance;
             flashlight.transform.position = flashlightPosition;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Wood") || collision.CompareTag("Stone"))
+        {
+            currentTarget = collision;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision == currentTarget)
+        {
+            currentTarget = null;
+        }
+    }
+
+    private void CollectItem(Item item)
+    {
+        if (item != null)
+        {
+            inventory.AddItem(item);
+            Destroy(item.gameObject);
         }
     }
 }

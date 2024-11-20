@@ -16,22 +16,16 @@ public class Item : MonoBehaviour
     public ItemType itemType;
     public int amount;
 
-    /*public Sprite GetSprite()
+    public Sprite GetSprite()
     {
         switch (itemType)
         {
-            default:
-
-            case ItemType.Sword:return ItemAssets.Instance.swordSprite;
-               
-            case ItemType.HpPotion: return ItemAssets.Instance.hpPtSprite;
-                
+            case ItemType.Sword: return ItemAssets.Instance.swordSprite;
             case ItemType.Armor: return ItemAssets.Instance.armorSprite;
-
+            case ItemType.HpPotion: return ItemAssets.Instance.hpPotionSprite;
             case ItemType.Wood: return ItemAssets.Instance.woodSprite;
-
             case ItemType.Stone: return ItemAssets.Instance.stoneSprite;
-
+            default: return null;
         }
-    }*/
+    }
 }
