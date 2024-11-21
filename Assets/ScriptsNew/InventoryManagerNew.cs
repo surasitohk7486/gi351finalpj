@@ -29,10 +29,7 @@ public class InventoryManagerNew : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            Craft(crafting[0]);
-        }
+        Craft(crafting[0]);
     }
 
     public void RefreshUI()
@@ -63,6 +60,7 @@ public class InventoryManagerNew : MonoBehaviour
             
         }
     }
+
     public bool Add(ItemClass item,int quantity)
     {
         //items.Add(item);
@@ -95,7 +93,7 @@ public class InventoryManagerNew : MonoBehaviour
     public bool Remove(ItemClass item)
     {
         //items.Remove(item);
-        SlotClass temp = new SlotClass();
+        SlotClass temp = Contains(item);
         if(temp != null)
         {
             if(temp.GetQuantity() > 1)
@@ -129,7 +127,7 @@ public class InventoryManagerNew : MonoBehaviour
     public bool Remove(ItemClass item,int quantity)
     {
         //items.Remove(item);
-        SlotClass temp = new SlotClass();
+        SlotClass temp = Contains(item);
         if (temp != null)
         {
             if (temp.GetQuantity() > 1)
