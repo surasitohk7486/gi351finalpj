@@ -387,6 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c527039dbd13f940a1321f3de68364d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crafting:
+  - {fileID: 11400000, guid: e431871b5a7b906439a8914e10486a34, type: 2}
   slotsHolder: {fileID: 1864171714}
   itemToAdd: {fileID: 11400000, guid: d6a6a3ffa7d6b6d4f8c59fb9517ff800, type: 2}
   itemToRemove: {fileID: 11400000, guid: 55a54884aa1d4d64b84d65d77ecea0f7, type: 2}
@@ -394,9 +396,9 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: d6a6a3ffa7d6b6d4f8c59fb9517ff800, type: 2}
     quantity: 1
   - item: {fileID: 11400000, guid: 55a54884aa1d4d64b84d65d77ecea0f7, type: 2}
-    quantity: 5
+    quantity: 10
   - item: {fileID: 11400000, guid: 188188c9855525940802938e53b6c986, type: 2}
-    quantity: 5
+    quantity: 10
 --- !u!4 &280176424
 Transform:
   m_ObjectHideFlags: 0
