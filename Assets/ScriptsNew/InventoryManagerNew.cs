@@ -30,6 +30,8 @@ public class InventoryManagerNew : MonoBehaviour
     private void Update()
     {
         Craft(crafting[0]);
+        Craft(crafting[1]);
+        Craft(crafting[2]);
     }
 
     public void RefreshUI()
@@ -190,9 +192,6 @@ public class InventoryManagerNew : MonoBehaviour
         {
             recipe.Craft(this);
         }
-        else
-        {
-            Debug.Log("Can't craft that item!");
-        }
+        
     }
 }
