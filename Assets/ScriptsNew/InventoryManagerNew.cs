@@ -9,8 +9,8 @@ public class InventoryManagerNew : MonoBehaviour
 {
     [SerializeField] private List<CraftingClass> crafting = new List<CraftingClass>();
     [SerializeField] private GameObject slotsHolder;
-    [SerializeField] private ItemClass itemToAdd;
-    [SerializeField] private ItemClass itemToRemove;
+    //[SerializeField] private ItemClass itemToAdd;
+    //[SerializeField] private ItemClass itemToRemove;
 
     public List<SlotClass> items = new List<SlotClass>();
 
@@ -65,29 +65,31 @@ public class InventoryManagerNew : MonoBehaviour
 
     public bool Add(ItemClass item,int quantity)
     {
-        //items.Add(item);
-        //check if inventory contains item
-
-
         SlotClass slot = Contains(item);
-        if(slot != null && slot.GetItem().isStackable)
+        if (slot != null)
         {
-            slot.AddQuantity(quantity);
+            // หากเป็น Stackable ให้เพิ่มจำนวน
+            if (slot.GetItem().isStackable)
+            {
+                slot.AddQuantity(quantity);
+            }
         }
         else
         {
-            Debug.Log("num items: " + items.Count);
-            Debug.Log("inven size: " + slots.Length);
+            // หากไอเทมยังไม่มีอยู่ใน Inventory
             if (items.Count < slots.Length)
             {
-                items.Add(new SlotClass(item, 1));
+                items.Add(new SlotClass(item, quantity));
             }
             else
             {
+                // หาก Inventory เต็ม
+                Debug.Log("Inventory is full!");
                 return false;
             }
         }
 
+        // อัปเดต UI
         RefreshUI();
         return true;
     }

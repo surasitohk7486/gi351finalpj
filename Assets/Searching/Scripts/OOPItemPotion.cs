@@ -18,22 +18,6 @@ namespace Searching
                 GetComponent<SpriteRenderer>().color = Color.blue;
             }
         }
-        public override void Hit()
-        {
-            if (isBonues)
-            {
-                mapGenerator.player.Heal(healPoint, isBonues);
-                Debug.Log("You got " + Name + " Bonues : " + healPoint * 2);
-            }
-            else
-            {
-                mapGenerator.player.Heal(healPoint);
-                Debug.Log("You got " + Name + " : " + healPoint);
-            }
-
-
-            mapGenerator.mapdata[positionX, positionY] = mapGenerator.empty;
-            Destroy(gameObject);
-        }
+        
     }
 }
