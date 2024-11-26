@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -132,29 +132,19 @@ public class InventoryManagerNew : MonoBehaviour
         SlotClass temp = Contains(item);
         if (temp != null)
         {
-            if (temp.GetQuantity() > 1)
-                temp.SubQuantity(quantity);
-            else
+            
+            temp.SubQuantity(quantity);
+
+            // ลบ Slot หาก Quantity <= 0
+            if (temp.GetQuantity() <= 0)
             {
-                SlotClass slotToRemove = new SlotClass();
-
-                foreach (SlotClass slot in items)
-                {
-                    if (slot.GetItem() == item)
-                    {
-                        temp = slot;
-                        break;
-                    }
-                }
-
-                items.Remove(slotToRemove);
+                items.Remove(temp);
             }
         }
         else
         {
             return false;
         }
-
 
         RefreshUI();
         return true;
