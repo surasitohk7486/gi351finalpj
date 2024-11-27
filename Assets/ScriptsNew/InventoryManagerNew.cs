@@ -41,6 +41,8 @@ public class InventoryManagerNew : MonoBehaviour
         Craft(crafting[1]);
 
         Craft(crafting[2]);
+
+        Craft(crafting[3]);
         
     }
 
@@ -202,10 +204,14 @@ public class InventoryManagerNew : MonoBehaviour
                 playerController.Atk += 5; // เพิ่มค่า HP (คุณสามารถเปลี่ยนตามต้องการ)
                 Debug.Log("Crafting Sword HP increased.");
             }
-            else
+            else if (recipe == crafting[2])
             {
                 playerController.Hp += 1; // เพิ่มค่า HP (คุณสามารถเปลี่ยนตามต้องการ)
                 Debug.Log("Crafting HealthPotion HP increased.");
+            }
+            else if (recipe == crafting[3])
+            {
+                playerController.hasKey = true;
             }
             recipe.Craft(this);
         }

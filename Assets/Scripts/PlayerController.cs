@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,19 +9,29 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f; // ความเร็วในการเคลื่อนที่
     private Rigidbody2D rb;
     private Vector2 movement;
+    public bool hasKey = false;
 
     [SerializeField] private GameObject uiInventory; // อ้างอิงถึง UI Inventory
     private bool uiInventoryActive = false; // สถานะเปิด/ปิด UI Inventory
 
+    [SerializeField] private TextMeshProUGUI hpText;  
+    [SerializeField] private TextMeshProUGUI atkText; 
+
     //[SerializeField] private Inventory inventory;
     private Collider2D currentTarget;
+
+    private void UpdatePlayerStatsUI()
+    {
+        hpText.text = $"HP: {Hp}"; // อัปเดตค่า HP
+        atkText.text = $"ATK: {Atk}"; // อัปเดตค่า ATK
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         uiInventory.SetActive(false);
-        
+
     }
 
     private void Update()
@@ -28,6 +39,7 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
         movement = new Vector2(horizontalInput, verticalInput);
+        UpdatePlayerStatsUI();
         if (Input.GetKeyDown(KeyCode.E))
         {
             ToggleInventoryUI(!uiInventoryActive);

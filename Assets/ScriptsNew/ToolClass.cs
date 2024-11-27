@@ -10,7 +10,8 @@ public class ToolClass : ItemClass
     public enum ToolType
     {
         Sword,
-        Armor
+        Armor,
+        Key
     }
     public override ItemClass GetItem() { return this; }
     public override ToolClass GetTool() { return this; }

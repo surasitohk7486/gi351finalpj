@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2edb1ed2db7bc0647808d9a4d3eeeca5, type: 3}
+  m_Name: KeyCrafting
+  m_EditorClassIdentifier: 
+  inputItems:
+  - item: {fileID: 11400000, guid: 9fb1b88ef7471434fbcc30c6759843eb, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: d6a6a3ffa7d6b6d4f8c59fb9517ff800, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 6860aac666cbb3e47b309f761370740e, type: 2}
+    quantity: 1
+  outputItems:
+    item: {fileID: 11400000, guid: c0510954e2d29254481c8d1b8c512f53, type: 2}
+    quantity: 1
