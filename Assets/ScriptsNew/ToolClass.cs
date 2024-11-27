@@ -6,6 +6,7 @@ public class ToolClass : ItemClass
 {
     [Header("Tool")]
     public ToolType toolType;
+    public int statValue = 10;
     public enum ToolType
     {
         Sword,

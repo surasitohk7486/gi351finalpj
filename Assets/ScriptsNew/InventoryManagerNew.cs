@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryManagerNew : MonoBehaviour
 {
     [SerializeField] private List<CraftingClass> crafting = new List<CraftingClass>();
     [SerializeField] private GameObject slotsHolder;
+
+    [SerializeField] private GameObject contextMenu;
+
+    [SerializeField] private Dictionary<GameObject, SlotClass> slotDictionary = new Dictionary<GameObject, SlotClass>();
+
     //[SerializeField] private ItemClass itemToAdd;
     //[SerializeField] private ItemClass itemToRemove;
 
     public List<SlotClass> items = new List<SlotClass>();
 
     private GameObject[] slots;
+
+    [SerializeField] private PlayerController playerController;
     public void Start()
     {
         slots = new GameObject[slotsHolder.transform.childCount];
@@ -23,15 +31,17 @@ public class InventoryManagerNew : MonoBehaviour
         {
             slots[i] = slotsHolder.transform.GetChild(i).gameObject;
         }
-
-        RefreshUI();
+            RefreshUI();
     }
 
     private void Update()
     {
         Craft(crafting[0]);
+
         Craft(crafting[1]);
+
         Craft(crafting[2]);
+        
     }
 
     public void RefreshUI()
@@ -181,9 +191,23 @@ public class InventoryManagerNew : MonoBehaviour
     private void Craft(CraftingClass recipe)
     {
         if (recipe.CanCrafting(this))
-        {
+        { 
+            if(recipe == crafting[0])
+            {
+                playerController.Hp += 10; // เพิ่มค่า HP (คุณสามารถเปลี่ยนตามต้องการ)
+                Debug.Log("Crafting Armor HP increased.");
+            }
+            else if(recipe == crafting[1])
+            {
+                playerController.Atk += 5; // เพิ่มค่า HP (คุณสามารถเปลี่ยนตามต้องการ)
+                Debug.Log("Crafting Sword HP increased.");
+            }
+            else
+            {
+                playerController.Hp += 1; // เพิ่มค่า HP (คุณสามารถเปลี่ยนตามต้องการ)
+                Debug.Log("Crafting HealthPotion HP increased.");
+            }
             recipe.Craft(this);
         }
-        
     }
 }
