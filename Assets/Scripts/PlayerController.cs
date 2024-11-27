@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool isFlashlightOn = false; // ตรวจสอบสถานะเปิด/ปิดของไฟฉาย
     private bool isFacingUp = true; // ตรวจสอบว่าผู้เล่นหันไปทางบนหรือล่าง
 
-    [SerializeField] private Inventory inventory;
+    //[SerializeField] private Inventory inventory;
     private Collider2D currentTarget;
 
     [SerializeField] private GameObject uiCrafting;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        inventory = new Inventory();
+        //inventory = new Inventory();
         
 
         ToggleCraftingUI(false);
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if (item != null)
         {
-            inventory.AddItem(item);
+            //inventory.AddItem(item);
             Destroy(item.gameObject);
         }
     }

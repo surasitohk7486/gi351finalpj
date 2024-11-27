@@ -10,7 +10,8 @@ public class Item : MonoBehaviour
         Armor,
         HpPotion,
         Wood,
-        Stone
+        Stone,
+        Water
     }
 
     public ItemType itemType;
@@ -25,6 +26,7 @@ public class Item : MonoBehaviour
             case ItemType.HpPotion: return ItemAssets.Instance.hpPotionSprite;
             case ItemType.Wood: return ItemAssets.Instance.woodSprite;
             case ItemType.Stone: return ItemAssets.Instance.stoneSprite;
+            case ItemType.Water: return ItemAssets.Instance.stoneSprite;
             default: return null;
         }
     }

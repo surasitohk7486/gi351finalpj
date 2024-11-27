@@ -65,31 +65,31 @@ public class InventoryManagerNew : MonoBehaviour
 
     public bool Add(ItemClass item,int quantity)
     {
+        Debug.Log("Adding item: " + item.itemName + ", quantity: " + quantity);
+
         SlotClass slot = Contains(item);
         if (slot != null)
         {
-            // หากเป็น Stackable ให้เพิ่มจำนวน
             if (slot.GetItem().isStackable)
             {
                 slot.AddQuantity(quantity);
+                Debug.Log("Increased quantity of existing item: " + item.itemName);
             }
         }
         else
         {
-            // หากไอเทมยังไม่มีอยู่ใน Inventory
             if (items.Count < slots.Length)
             {
                 items.Add(new SlotClass(item, quantity));
+                Debug.Log("Added new item: " + item.itemName);
             }
             else
             {
-                // หาก Inventory เต็ม
-                Debug.Log("Inventory is full!");
+                Debug.LogError("Inventory is full!");
                 return false;
             }
         }
 
-        // อัปเดต UI
         RefreshUI();
         return true;
     }
