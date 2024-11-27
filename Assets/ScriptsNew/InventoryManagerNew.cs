@@ -13,8 +13,6 @@ public class InventoryManagerNew : MonoBehaviour
 
     [SerializeField] private GameObject contextMenu;
 
-    [SerializeField] private Dictionary<GameObject, SlotClass> slotDictionary = new Dictionary<GameObject, SlotClass>();
-
     //[SerializeField] private ItemClass itemToAdd;
     //[SerializeField] private ItemClass itemToRemove;
 
@@ -86,6 +84,10 @@ public class InventoryManagerNew : MonoBehaviour
             {
                 slot.AddQuantity(quantity);
                 Debug.Log("Increased quantity of existing item: " + item.itemName);
+            }
+            else
+            {
+                items.Add(new SlotClass(item, quantity));
             }
         }
         else
@@ -196,17 +198,17 @@ public class InventoryManagerNew : MonoBehaviour
         { 
             if(recipe == crafting[0])
             {
-                playerController.Hp += 10; // เพิ่มค่า HP (คุณสามารถเปลี่ยนตามต้องการ)
+                playerController.Hp += 10; 
                 Debug.Log("Crafting Armor HP increased.");
             }
             else if(recipe == crafting[1])
             {
-                playerController.Atk += 5; // เพิ่มค่า HP (คุณสามารถเปลี่ยนตามต้องการ)
+                playerController.Atk += 5; 
                 Debug.Log("Crafting Sword HP increased.");
             }
             else if (recipe == crafting[2])
             {
-                playerController.Hp += 1; // เพิ่มค่า HP (คุณสามารถเปลี่ยนตามต้องการ)
+                playerController.Hp += 1; 
                 Debug.Log("Crafting HealthPotion HP increased.");
             }
             else if (recipe == crafting[3])
